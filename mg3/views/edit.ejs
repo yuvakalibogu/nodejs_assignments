@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/edited/<%= objData[0]._id %>" method="post">
+     <label for="">name </label><input type="text" name="name" value="<%=objData[0].name%>" id="">
+        <label for="">email</label><input type="email" name="email" value="<%=objData[0].email%> "id="">
+        <label for="">number</label><input type="text" name="number" value="<%=objData[0].number%> "id="">
+        <label for="">address</label><input type="text" name="address" value="<%=objData[0].address%> " id="">
+        <input type="submit" value="edited">
+</form>
+</body>
+</html>

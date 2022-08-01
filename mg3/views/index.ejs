@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <% for(let i=0;i < locals.tasks.length ;i++) { %>
+        <p> <%=locals.tasks[i].name%> 
+            <%=locals.tasks[i].email%> 
+            <%=locals.tasks[i].number%> 
+            <%=locals.tasks[i].address%> 
+            <button id="<%= locals.tasks[i]._id %>"  onclick="edit(this)" type="submit" value="edit"></button>
+        <button  id="<%= locals.tasks[i]._id %>" type="button" onclick="del(this)" value="delete"></button></p> 
+        <% }%>
+    
+    <form action="/submit" method="post">
+        <label for="">name </label><input type="text" name="name" id="">
+        <label for="">email</label><input type="email" name="email" id="">
+        <label for="">number</label><input type="text" name="number" id="">
+        <label for="">address</label><input type="text" name="address" id="">
+        <input type="submit" value="submit">
+    </form>
+    <script>
+        function edit(e){
+            location.href=`/edit/${e.id}`;
+        }
+        function del(e){
+            location.href=`/delete/${e.id}`;
+        }
+       
+    </script>
+</body>
+</html>

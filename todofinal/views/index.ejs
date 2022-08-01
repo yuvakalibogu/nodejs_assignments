@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+
+</head>
+
+<body>
+<div>
+    <div>
+        <div>
+            <span class="todo">todo</span>
+
+            <form action="/<%= filterType %>/submit" class="text-form" method="post">
+                <box-icon name='chevron-down'  class="box"></box-icon>
+                <input type="text" name="name" class="text">
+                <input type="submit" value="" style="display:none">
+
+            </form>
+        </div>
+        <div>
+       
+            <% for(let i=0;i < locals.tasks.length ;i++) { %>
+ <div>
+
+            <li class="todostyle  <% if( tasks[i].isCompleted) { %> strike <% } %> ">
+                <div id="<%= tasks[i]._id %>" onclick="strike(this)" <% if( tasks[i].isCompleted) { %>
+                    class="check-box checked" <% } else { %> class="check-box" <% } %>>
+                </div>
+                <div class="name_check">
+                <div class="nam"><%=locals.tasks[i].name%></div>
+               <div class="h"> <button id="<%= tasks[i]._id %>" class="x" onclick="del(this)" class="x-button">x</button></div>
+            </div>
+            </li> <% }%>
+        
+        </div>
+        </div>
+        <div class="footer">
+            <strong><%=count%>   Items</strong>
+            <ul class="filters">
+                <li><a onclick="alll()" id="all">all</a></li>
+                <li><a onclick="active()" id="active">active</a></li>
+                <li><a onclick="completed()" id="completed">completed</a></li>
+                <li><a onclick="clearcompleted()" id="clearcompleted">clear-completed</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function strike(e) {
+            location.href = `/<%= filterType %>/strike/${e.id}`;
+        }
+
+        function alll() {
+            location.href = `/all`;
+        }
+
+        function active() {
+            location.href = `/active`;
+        }
+
+        function completed() {
+            location.href = `/completed`;
+        }
+
+        function clearcompleted() {
+            location.href = `/<%= filterType %>/clearcompleted`;
+        }
+
+        function del(e) {
+            location.href = `/<%= filterType %>/delete/${e.id}`;
+
+        }
+    </script>
+</body>
+
+</html>
